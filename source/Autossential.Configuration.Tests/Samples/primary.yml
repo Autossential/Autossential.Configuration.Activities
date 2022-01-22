@@ -1,0 +1,18 @@
+﻿int: 10
+double: 10.10
+decimal: 10.15
+float: 10.20
+long: 20
+datetime: 2021-12-11 17:23
+boolean: true
+array: [1,2,3]
+list:
+  - 1
+  - 2
+  - 3
+
+sub-section:
+    level: 2
+
+    sub-section:
+        level: 3

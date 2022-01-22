@@ -1,0 +1,7 @@
+{
+	"int": 1000,
+	"boolean": false,
+	"sub-section": {
+		"name":  "json"
+	}
+}
