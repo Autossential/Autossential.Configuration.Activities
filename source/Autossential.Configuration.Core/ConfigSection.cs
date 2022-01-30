@@ -1,9 +1,36 @@
 ﻿using Autossential.Configuration.Core.Resolvers;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Autossential.Configuration.Core
 {
+    [DebuggerTypeProxy(typeof(ConfigSectionDebugView))]
     public class ConfigSection
     {
+        public class ConfigSectionDebugView
+        {
+            public ConfigSectionDebugView(ConfigSection config)
+            {
+                Body = new Dictionary<string, object>();
+                MapAllKeys(config, "");
+            }
+
+            private void MapAllKeys(ConfigSection config, string sufix)
+            {
+                foreach (var item in config.Items)
+                {
+                    if (config.HasSection(item.Key))
+                    {
+                        MapAllKeys(config.Section(item.Key), sufix + item.Key + SectionDelimiter);
+                        continue;
+                    }
+                    Body.Add(sufix + item.Key, item.Value);
+                }
+            }
+
+            public Dictionary<string, object> Body { get; set; }
+        }
+
         public readonly ConfigItemCollection Items;
 
         public ConfigSection()
