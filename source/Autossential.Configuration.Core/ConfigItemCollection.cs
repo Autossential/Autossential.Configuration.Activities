@@ -1,24 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Autossential.Configuration.Core
 {
     public class ConfigItemCollection : IReadOnlyCollection<ConfigItem>
     {
-        public ConfigItemCollection(ConfigSection section)
-        {
-            _section = section;
-        }
-
-        private readonly HashSet<ConfigItem> _items = new HashSet<ConfigItem>();
-
-        private readonly ConfigSection _section;
+        private readonly List<ConfigItem> _items = new List<ConfigItem>();
 
         public int Count => _items.Count;
 
-        internal ConfigItem Find(string key) => _items.FirstOrDefault(p => p.HasKey(key));
+        internal ConfigItem Find(string key) => _items.Find(p => p.HasKey(key));
 
         internal object this[string key]
         {
@@ -37,43 +28,34 @@ namespace Autossential.Configuration.Core
             get
             {
                 if (index < Count)
-                    return _items.ElementAt(index).Value;
+                    return _items[index].Value;
 
                 return null;
             }
         }
 
-        internal void AddOrUpdate(string key, object value)
+        internal ConfigItem AddOrUpdate(string key, object value)
         {
+            if (value == null)
+            {
+                Remove(key);
+                return null;
+            }
+
             var item = Find(key);
             if (item == null)
             {
-                var sb = new StringBuilder();
-                sb.Insert(0, key);
-                var section = _section;
-                while (section != null)
-                {
-                    sb.Insert(0, '/')
-                      .Insert(0, section.Name);
-
-                    section = section.GetParent();
-                }
-
                 item = new ConfigItem(key, value);
-                item.SetUniqueKey(sb.ToString().TrimStart('/'));
-
                 _items.Add(item);
             }
             else
             {
                 item.Value = value;
             }
+            return item;
         }
 
-        internal void Remove(string key)
-        {
-            _items.Remove(Find(key));
-        }
+        internal void Remove(string key) => _items.Remove(Find(key));
 
         public IEnumerator<ConfigItem> GetEnumerator() => _items.GetEnumerator();
 

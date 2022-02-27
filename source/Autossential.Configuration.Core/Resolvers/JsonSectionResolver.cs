@@ -1,5 +1,4 @@
-﻿using Autossential.Configuration.Core;
-using System.Linq;
+﻿using System.Linq;
 using System.Text.Json;
 
 namespace Autossential.Configuration.Core.Resolvers
@@ -52,12 +51,11 @@ namespace Autossential.Configuration.Core.Resolvers
 
                 case JsonValueKind.True:
                 case JsonValueKind.False: return element.GetBoolean();
+                case JsonValueKind.String: return element.GetString();
 
                 case JsonValueKind.Undefined:
-                case JsonValueKind.Null: return null;
-
-                case JsonValueKind.String:
-                default: return element.GetString();
+                case JsonValueKind.Null:
+                default: return null;
             }
         }
     }

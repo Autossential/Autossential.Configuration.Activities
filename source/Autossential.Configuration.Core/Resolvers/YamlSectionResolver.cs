@@ -1,5 +1,6 @@
-﻿using Autossential.Configuration.Core;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
+using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 
 namespace Autossential.Configuration.Core.Resolvers
@@ -7,12 +8,12 @@ namespace Autossential.Configuration.Core.Resolvers
     public class YamlSectionResolver : ISectionResolver
     {
         private readonly Deserializer _deserializer;
-        private readonly string _yamlContent;
+        private readonly IParser _yamlContent;
 
         public YamlSectionResolver(string yamlContent)
         {
             _deserializer = new Deserializer();
-            _yamlContent = yamlContent;
+            _yamlContent = new MergingParser(new Parser(new StringReader(yamlContent)));
         }
 
         public void Resolve(ConfigSection config)

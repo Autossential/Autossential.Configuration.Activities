@@ -99,6 +99,7 @@ namespace Autossential.Configuration.Tests
             Assert.IsTrue(_config.HasSection(keyPath));
             var config = _config.Section(keyPath);
             Assert.AreEqual(name, config.Name);
+            Assert.AreEqual(keyPath, config.UniqueName);
         }
 
         [TestMethod]
