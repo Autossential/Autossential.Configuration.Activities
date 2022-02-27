@@ -178,7 +178,7 @@
     <comment>category</comment>
   </data>
   <data name="MergeConfig_Description" xml:space="preserve">
-    <value>Merges two ConfigSection objects in a way that the destination object values are overwritten by the source object. This also applies to sub-sections.</value>
+    <value>Merges two ConfigSection objects by copying the values from Source config to Destination config. This also applies to sub-sections.</value>
     <comment>activity description</comment>
   </data>
   <data name="MergeConfig_Destination_Description" xml:space="preserve">

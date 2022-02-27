@@ -7,7 +7,7 @@ namespace Autossential.Configuration.Core
 {
     public class ConfigSection
     {
-        public readonly ConfigItemCollection Items = new ConfigItemCollection();
+        public ConfigItemCollection Items { get; } = new ConfigItemCollection();
 
         public int Count => Items.Count;
 
@@ -19,6 +19,23 @@ namespace Autossential.Configuration.Core
             (currentSectionUniqueName + DELIMITER + key).TrimStart(DELIMITER);
 
         private readonly Dictionary<string, ConfigItem> _cache = new Dictionary<string, ConfigItem>(StringComparer.OrdinalIgnoreCase);
+
+        private ConfigSection _parent;
+
+        public ConfigSection Parent() => _parent;
+        public ConfigSection Root()
+        {
+            var root = this;
+            var parent = Parent();
+
+            while (parent != null)
+            {
+                root = parent;
+                parent = parent.Parent();
+            }
+
+            return root;
+        }
 
         public ConfigItem GetItem(string keyPath)
         {
@@ -46,7 +63,10 @@ namespace Autossential.Configuration.Core
             if (keyPath.IndexOf(DELIMITER) == -1)
             {
                 if (value is ConfigSection config)
+                {
                     config.UniqueName = CreateUniqueName(UniqueName, keyPath);
+                    config._parent = this;
+                }
 
                 return Items.AddOrUpdate(keyPath, value);
             }

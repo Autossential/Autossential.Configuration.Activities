@@ -19,8 +19,6 @@ namespace Autossential.Configuration.Core
 
         internal bool HasKey(string key) => Key.Equals(key, StringComparison.OrdinalIgnoreCase);
 
-        internal ConfigSection Section { get; set; }
-
         public bool Equals(ConfigItem x, ConfigItem y)
         {
             if (x == null && y == null)

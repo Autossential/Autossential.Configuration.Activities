@@ -84,6 +84,13 @@ namespace Autossential.Configuration.Core
             return FromCollection(item.Value, items => items.ToList().ConvertAll(ChangeType<T>), defaultValue);
         }
         public static List<object> ValueAsList(this ConfigItem item, List<object> defaultValue) => ValueAsList<object>(item, defaultValue);
+        public static ConfigSection ValueAsConfigSection(this ConfigItem item, ConfigSection defaultValue)
+        {
+            if (item.Value is ConfigSection value) 
+                return value;
+
+            return defaultValue;
+        }
 
 
         public static string ValueAsString(this ConfigItem item) => ValueAsString(item, default);
@@ -98,6 +105,6 @@ namespace Autossential.Configuration.Core
         public static object[] ValueAsArray(this ConfigItem item) => ValueAsArray(item, default);
         public static List<T> ValueAsList<T>(this ConfigItem item) => ValueAsList<T>(item, default);
         public static List<object> ValueAsList(this ConfigItem item) => ValueAsList(item, default);
-
+        public static ConfigSection ValueAsConfigSection(this ConfigItem item) => ValueAsConfigSection(item, default);
     }
 }
