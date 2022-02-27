@@ -6,7 +6,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Description>Provides a collection of activities to create configuration settings from YAML or JSON files.</Description>
+		<Description>Provides activities to create a rich configuration object based on text files formatted on YAML or JSON standards or from objects like DataTable and Dictionary.</Description>
 		<Authors>Alexandre Toledo Perez</Authors>
 		<Copyright>© 2021 Alexandre Toledo Perez</Copyright>
 		<PackageProjectUrl>https://alexandretperez.github.io/Autossential/</PackageProjectUrl>
