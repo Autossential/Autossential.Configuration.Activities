@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using Autossential.Shared.Tests;
+using System.Collections.Generic;
 
 namespace Autossential.Configuration.Tests
 {
@@ -11,7 +12,8 @@ namespace Autossential.Configuration.Tests
     [TestClass]
     public class YamlConfigTest
     {
-        public static string FileSample = File.ReadAllText(IOSamples.GetSamplePath("sample.json"));
+        static readonly string FileSample = File.ReadAllText(IOSamples.GetSamplePath("sample.yml"));
+        static readonly string ComplexSample = File.ReadAllText(IOSamples.GetSamplePath("complex.yml"));
 
         [TestMethod]
         public void Keys()
@@ -50,6 +52,18 @@ namespace Autossential.Configuration.Tests
             Assert.IsTrue(config.HasSection("sub-1"));
             Assert.IsTrue(config.HasSection("sub-1/sub-2"));
             Assert.IsTrue(config.HasKey("sub-1/sub-2/sub-3"));
+        }
+
+        [TestMethod]
+        public void Complex()
+        {
+            var config = new ConfigSection(new YamlSectionResolver(ComplexSample));
+            var components = config.AsArray("root/components");
+            Assert.AreEqual(3, components.Length);
+            Assert.AreEqual(typeof(Dictionary<object, object>), components[2].GetType());
+
+            var containers = config.AsArray<Dictionary<object, object>>("root/spec/containers");
+            Assert.AreEqual(2, containers.Length);
         }
     }
 }

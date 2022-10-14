@@ -34,7 +34,7 @@
             </GeometryDrawing.Geometry>
         </GeometryDrawing>
     </DrawingGroup>
-    
+
     <DrawingGroup x:Key="DictionaryToConfigIcon">
         <DrawingGroup.ClipGeometry>
             <RectangleGeometry Rect="0,0,24,24" />
@@ -67,5 +67,4 @@
             </GeometryDrawing.Geometry>
         </GeometryDrawing>
     </DrawingGroup>
-
 </ResourceDictionary>

@@ -1,7 +1,6 @@
-﻿using Autossential.Configuration.Core;
-using Autossential.Configuration.Core.Resolvers;
-using Autossential.Configuration.Activities.Properties;
+﻿using Autossential.Configuration.Activities.Properties;
 using Autossential.Configuration.Core;
+using Autossential.Configuration.Core.Resolvers;
 using System.Activities;
 using System.IO;
 

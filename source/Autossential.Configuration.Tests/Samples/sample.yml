@@ -1,0 +1,13 @@
+﻿Name: MyName
+
+Section:
+  A: ValueA
+  B: ValueB
+
+Array: [msedge, excel]
+
+Date: 1983-07-30
+
+Number: 10
+
+Boolean: true

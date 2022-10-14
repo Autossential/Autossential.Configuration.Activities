@@ -2,15 +2,14 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
-    xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation" 
+    xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation"
     xmlns:sapc="clr-namespace:System.Activities.Presentation.Converters;assembly=System.Activities.Presentation"
     xmlns:c="clr-namespace:Autossential.Shared.Activities.Design.Controls">
-
 
     <sap:ActivityDesigner.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Themes/Default.xaml"/>
+                <ResourceDictionary Source="../Themes/Default.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <sapc:ArgumentToExpressionConverter x:Key="ArgumentToExpressionConverter" />
         </ResourceDictionary>
@@ -40,7 +39,7 @@
                 OwnerActivity="{Binding ModelItem}"
                 UseLocationExpression="False"
                 Expression="{Binding ModelItem.Source, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
-            
+
             <Label Content="Destination" Grid.Row="0" Grid.Column="2" />
             <sapv:ExpressionTextBox
                 Grid.Row="1"
@@ -49,7 +48,6 @@
                 OwnerActivity="{Binding ModelItem}"
                 UseLocationExpression="True"
                 Expression="{Binding ModelItem.Destination, ConverterParameter=InOut, Converter={StaticResource ArgumentToExpressionConverter}}" />
-
         </Grid>
     </c:ActivityDecoratorControl>
 </sap:ActivityDesigner>

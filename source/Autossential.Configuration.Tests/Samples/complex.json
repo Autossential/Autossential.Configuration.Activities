@@ -1,0 +1,33 @@
+{
+  "root": {
+    "metadata": {
+      "name": "hello"
+    },
+    "components": [
+      "C1",
+      "C2",
+      {
+        "C3": {
+          "label": "production"
+        }
+      }
+    ],
+    "spec": {
+      "containers": [
+        {
+          "name": "mssql",
+          "image": "mcr.microsoft.com/mssql/server:2017-latest",
+          "ports": [
+            {
+              "containerPort": 1433
+            }
+          ]
+        },
+        {
+          "name": "service",
+          "image": "no.image.com/prod:latest"
+        }
+      ]
+    }
+  }
+}

@@ -12,12 +12,13 @@ namespace Autossential.Configuration.Tests
     [TestClass]
     public class JsonConfigTest
     {
-        public static string FileSample = File.ReadAllText(IOSamples.GetSamplePath("sample.json"));
+        static readonly string FileSample = File.ReadAllText(IOSamples.GetSamplePath("sample.json"));
+        static readonly string ComplexSample = File.ReadAllText(IOSamples.GetSamplePath("complex.json"));
 
         [TestMethod]
         public void Keys()
         {
-            var keys = new[] { "Name", "Section/A", "Section/B", "Array", "Date", "Number", "Boolean", "ObjArray" };
+            var keys = new[] { "Name", "Section/A", "Section/B", "Array", "Date", "Number", "Boolean" };
             var config = new ConfigSection(new JsonSectionResolver(FileSample));
             foreach (var key in keys)
                 Assert.IsTrue(config.HasKey(key), key + " not found");
@@ -39,11 +40,15 @@ namespace Autossential.Configuration.Tests
         }
 
         [TestMethod]
-        public void ObjectArray()
+        public void Complex()
         {
-            var config = new ConfigSection(new JsonSectionResolver(FileSample));
-            var arr = config.AsArray<Dictionary<string, object>>("ObjArray");
-            Assert.IsTrue(arr.All(p => p != null));
+            var config = new ConfigSection(new JsonSectionResolver(ComplexSample));
+            var components = config.AsArray("root/components");
+            Assert.AreEqual(3, components.Length);
+            Assert.AreEqual(typeof(Dictionary<string, object>), components[2].GetType());
+
+            var containers = config.AsArray<Dictionary<string, object>>("root/spec/containers");
+            Assert.AreEqual(2, containers.Length);
         }
     }
 }
