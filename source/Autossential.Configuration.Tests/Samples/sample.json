@@ -6,9 +6,26 @@
   },
   "Array": [
     "msedge",
-    "excel"
+    "excel",
+    {
+      "product": "office",
+      "version": 365
+    }
   ],
   "Date": "1983-07-30",
   "Number": 10,
-  "Boolean": true
+  "Boolean": true,
+  "ObjArray": [
+    {
+      "Item": "A",
+      "Value": 1,
+      "Child": {
+        "Data": "Temp"
+      }
+    },
+    {
+      "Item": "B",
+      "Value": 2
+    }
+  ]
 }

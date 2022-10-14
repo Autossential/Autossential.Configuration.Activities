@@ -3,7 +3,9 @@ using Autossential.Configuration.Core.Resolvers;
 using Autossential.Shared.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Autossential.Configuration.Tests
 {
@@ -15,7 +17,7 @@ namespace Autossential.Configuration.Tests
         [TestMethod]
         public void Keys()
         {
-            var keys = new[] { "Name", "Section/A", "Section/B", "Array", "Date", "Number", "Boolean" };
+            var keys = new[] { "Name", "Section/A", "Section/B", "Array", "Date", "Number", "Boolean", "ObjArray" };
             var config = new ConfigSection(new JsonSectionResolver(FileSample));
             foreach (var key in keys)
                 Assert.IsTrue(config.HasKey(key), key + " not found");
@@ -34,6 +36,14 @@ namespace Autossential.Configuration.Tests
             Assert.IsTrue(config.AsBoolean("Boolean"));
 
             CollectionAssert.AreEqual(new[] { "msedge", "excel" }, config.AsArray("Array"));
+        }
+
+        [TestMethod]
+        public void ObjectArray()
+        {
+            var config = new ConfigSection(new JsonSectionResolver(FileSample));
+            var arr = config.AsArray<Dictionary<string, object>>("ObjArray");
+            Assert.IsTrue(arr.All(p => p != null));
         }
     }
 }

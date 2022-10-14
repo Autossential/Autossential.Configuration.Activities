@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net461;net5.0-windows</TargetFrameworks>
+		<TargetFrameworks>net461;net6.0-windows</TargetFrameworks>
 		<AssemblyName>$(MSBuildProjectName)</AssemblyName>
 		<PackageId>$(AssemblyName).Core</PackageId>
 	</PropertyGroup>
@@ -17,12 +17,10 @@
 		<Reference Include="System.Activities.Presentation" />
 		<Reference Include="WindowsBase" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' != 'net461' ">
-		<PackageReference Include="System.Activities" />
+
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net6'))">
 		<PackageReference Include="UiPath.Workflow" />
 		<PackageReference Include="System.Activities.Core.Presentation" />
-		<PackageReference Include="System.Activities.Metadata" />
-		<PackageReference Include="UiPath.Activities.Api" />
 	</ItemGroup>
 	
 	<ItemGroup>
