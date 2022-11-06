@@ -129,6 +129,22 @@
     <value>Specifies the amount of time in milliseconds to wait for the activity to run before an error is thrown. The default value is 30000 (30s).</value>
     <comment>property description</comment>
   </data>
+  <data name="ConfigParse_Content_Description" xml:space="preserve">
+    <value>Text content well formatted in YAML or JSON.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ConfigParse_Description" xml:space="preserve">
+    <value>Converts the text content in a ConfigSection object.</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="ConfigParse_DisplayName" xml:space="preserve">
+    <value>Config Parse</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="ConfigParse_Result_Description" xml:space="preserve">
+    <value>The ConfigSection object.</value>
+    <comment>property description</comment>
+  </data>
   <data name="DataTableToConfig_DataTable_Description" xml:space="preserve">
     <value>The DataTable where to read the configuration from.</value>
     <comment>property description</comment>

@@ -1,0 +1,44 @@
+﻿<sap:ActivityDesigner x:Class="Autossential.Configuration.Activities.Design.Designers.ConfigParseDesigner"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
+    xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation"
+    xmlns:sapc="clr-namespace:System.Activities.Presentation.Converters;assembly=System.Activities.Presentation"
+    xmlns:c="clr-namespace:Autossential.Shared.Activities.Design.Controls">
+
+    <sap:ActivityDesigner.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/Default.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <sapc:ArgumentToExpressionConverter x:Key="ArgumentToExpressionConverter" />
+        </ResourceDictionary>
+    </sap:ActivityDesigner.Resources>
+
+    <sap:ActivityDesigner.Icon>
+        <DrawingBrush Drawing="{StaticResource ConfigParseIcon}" Stretch="Uniform"></DrawingBrush>
+    </sap:ActivityDesigner.Icon>
+
+    <c:ActivityDecoratorControl Style="{StaticResource ActivityDecoratorStyle}">
+        <StackPanel Width="300">
+            <Label Content="Content (Yaml/Json)"/>
+            <sapv:ExpressionTextBox
+                ExpressionType="{Binding ModelItem.Properties[Content].PropertyType.GenericTypeArguments[0]}"
+                OwnerActivity="{Binding ModelItem}"
+                UseLocationExpression="False"
+                Expression="{Binding ModelItem.Content, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Result"/>
+                <Border Background="#33555555" CornerRadius="4" Height="16" Padding="6,1">
+                    <Label Content="Out" FontSize="10" Margin="0" Padding="0" />
+                </Border>
+            </StackPanel>
+            <sapv:ExpressionTextBox
+                ExpressionType="{Binding ModelItem.Properties[Result].PropertyType.GenericTypeArguments[0]}"
+                OwnerActivity="{Binding ModelItem}"
+                UseLocationExpression="True"
+                Expression="{Binding ModelItem.Result, ConverterParameter=Out, Converter={StaticResource ArgumentToExpressionConverter}}" />
+        </StackPanel>
+    </c:ActivityDecoratorControl>
+</sap:ActivityDesigner>

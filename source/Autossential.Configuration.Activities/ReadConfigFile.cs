@@ -40,10 +40,7 @@ namespace Autossential.Configuration.Activities
                 case ".json": return new JsonSectionResolver(content);
                 case ".yaml":
                 case ".yml": return new YamlSectionResolver(content);
-                default:
-                    if (content.Trim().StartsWith("{"))
-                        return new JsonSectionResolver(content);
-                    return new YamlSectionResolver(content);
+                default: return SectionResolverFactory.CreateFromContent(content);
             }
         }
     }
