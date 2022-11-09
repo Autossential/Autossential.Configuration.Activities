@@ -43,7 +43,7 @@
                 Filter="All Supported Files|*.yaml;*.yml;*.json;*.txt|YAML Files|*.yaml;*.yml|JSON Files|*.json|Text Files|*.txt"
                 ModelItem="{Binding ModelItem}" />
 
-            <Label Content="Result (Output)" Grid.Row="2" />
+            <c:BadgeLabelControl Label="Result" Badge="Out" Grid.Row="2"/>
             <sapv:ExpressionTextBox
                 Grid.Row="3"
                 ExpressionType="{Binding ModelItem.Properties[Result].PropertyType.GenericTypeArguments[0]}"

@@ -5,7 +5,9 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<Version>1.1.0</Version>
 	</PropertyGroup>
-
+	<PropertyGroup>
+		<GeneratedMSBuildEditorConfigFile>$(IntermediateOutputPath)\$(MSBuildProjectName).GeneratedMSBuildEditorConfig.editorconfig</GeneratedMSBuildEditorConfigFile>
+	</PropertyGroup>
 	<PropertyGroup>
 		<Description>Provides activities to create a rich configuration object based on text files formatted on YAML or JSON standards or from objects like DataTable and Dictionary.</Description>
 		<Authors>Alexandre Toledo Perez</Authors>

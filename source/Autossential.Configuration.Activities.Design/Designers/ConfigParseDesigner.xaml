@@ -28,12 +28,7 @@
                 UseLocationExpression="False"
                 Expression="{Binding ModelItem.Content, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
 
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Result"/>
-                <Border Background="#33555555" CornerRadius="4" Height="16" Padding="6,1">
-                    <Label Content="Out" FontSize="10" Margin="0" Padding="0" />
-                </Border>
-            </StackPanel>
+            <c:BadgeLabelControl Label="Result" Badge="Out"/>
             <sapv:ExpressionTextBox
                 ExpressionType="{Binding ModelItem.Properties[Result].PropertyType.GenericTypeArguments[0]}"
                 OwnerActivity="{Binding ModelItem}"

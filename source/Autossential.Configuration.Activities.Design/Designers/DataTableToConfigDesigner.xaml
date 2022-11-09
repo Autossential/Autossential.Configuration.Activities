@@ -57,7 +57,7 @@
                     UseLocationExpression="False"
                     Expression="{Binding ModelItem.ValueColumnName, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
             </Grid>
-            <Label Content="Result (Output)" Grid.Row="2" />
+            <c:BadgeLabelControl Label="Result" Badge="Out" Grid.Row="2"/>
             <sapv:ExpressionTextBox
                 Grid.Row="3"
                 ExpressionType="{Binding ModelItem.Properties[Result].PropertyType.GenericTypeArguments[0]}"
