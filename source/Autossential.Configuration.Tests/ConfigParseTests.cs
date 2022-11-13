@@ -1,7 +1,9 @@
 ﻿using Autossential.Configuration.Activities;
+using Autossential.Configuration.Core;
 using Autossential.Shared.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using YamlDotNet.Core;
 
@@ -31,6 +33,18 @@ namespace Autossential.Configuration.Tests
                 var value = res.Get(p => p.Result);
                 Assert.IsNotNull(value);
             }
+        }
+
+        [TestMethod]
+        public void JsonArrayTest()
+        {
+            var content = "[{ \"name\": \"Autossential\" }]";
+            var args = GetArgs(content);
+            var res = WorkflowTester.Run(new ConfigParse(), args);
+            var config = res.Get(p => p.Result) as ConfigSection;
+            Assert.IsNotNull(config);
+            Assert.IsTrue(config.HasKey("root"));
+            Assert.AreEqual("Autossential", config.AsString("root/name"));
         }
 
         [TestMethod]

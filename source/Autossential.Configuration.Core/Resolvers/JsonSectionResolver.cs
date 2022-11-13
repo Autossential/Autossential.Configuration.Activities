@@ -9,15 +9,18 @@ namespace Autossential.Configuration.Core.Resolvers
 {
     public class JsonSectionResolver : DictionarySectionResolver
     {
-        private readonly string _jsonContent;
+        private string _jsonContent;
 
         public JsonSectionResolver(string jsonContent)
         {
-            _jsonContent = jsonContent;
+            _jsonContent = jsonContent.Trim();
         }
 
         public override void Resolve(ConfigSection config)
         {
+            if (_jsonContent.StartsWith("["))
+                _jsonContent = $"{{ \"root\": {_jsonContent} }}";
+
             var options = new JsonSerializerOptions();
             options.Converters.Add(new JsonDictionaryConverter());
 

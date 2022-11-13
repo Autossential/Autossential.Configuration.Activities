@@ -7,7 +7,8 @@
             if (string.IsNullOrWhiteSpace(content))
                 return new JsonSectionResolver("{}");
 
-            if (content.Trim().StartsWith("{"))
+            content = content.Trim();
+            if (content.StartsWith("{") || content.StartsWith("["))
                 return new JsonSectionResolver(content);
 
             return new YamlSectionResolver(content);
