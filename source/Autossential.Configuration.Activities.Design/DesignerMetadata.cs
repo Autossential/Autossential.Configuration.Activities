@@ -29,6 +29,7 @@ namespace Autossential.Configuration.Activities.Design
                 builder.Register<MergeConfig, MergeConfigDesigner>(configuration);
                 builder.Register<DataTableToConfig, DataTableToConfigDesigner>(adapters);
                 builder.Register<DictionaryToConfig, DictionaryToConfigDesigner>(adapters);
+                builder.Register<ConfigParse, ConfigParseDesigner>(adapters);
             });
         }
     }

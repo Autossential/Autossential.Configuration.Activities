@@ -2,15 +2,15 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
-    xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation" 
+    xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation"
     xmlns:sapc="clr-namespace:System.Activities.Presentation.Converters;assembly=System.Activities.Presentation"
-    xmlns:c="clr-namespace:Autossential.Shared.Activities.Design.Controls">
-
+    xmlns:c="clr-namespace:Autossential.Shared.Activities.Design.Controls"
+    xmlns:as="clr-namespace:Autossential.Configuration.Activities.Properties;assembly=Autossential.Configuration.Activities">
 
     <sap:ActivityDesigner.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Themes/Default.xaml"/>
+                <ResourceDictionary Source="../Themes/Default.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <sapc:ArgumentToExpressionConverter x:Key="ArgumentToExpressionConverter" />
         </ResourceDictionary>
@@ -29,7 +29,9 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Label Content="FilePath" Grid.Row="0" />
+            <Label Grid.Row="0"   
+                   Content="{x:Static as:Resources.ReadConfigFile_FilePath_DisplayName}"
+                   ToolTip="{x:Static as:Resources.ReadConfigFile_FilePath_Description}" />
             <sapv:ExpressionTextBox
                 Grid.Row="1"
                 ExpressionType="{Binding ModelItem.Properties[FilePath].PropertyType.GenericTypeArguments[0]}"
@@ -44,13 +46,15 @@
                 Filter="All Supported Files|*.yaml;*.yml;*.json;*.txt|YAML Files|*.yaml;*.yml|JSON Files|*.json|Text Files|*.txt"
                 ModelItem="{Binding ModelItem}" />
 
-            <Label Content="Result (Output)" Grid.Row="2" />
+            <c:BadgeLabelControl Label="{x:Static as:Resources.ReadConfigFile_Result_DisplayName}"
+                                 ToolTip="{x:Static as:Resources.ReadConfigFile_Result_Description}" Badge="Out" Grid.Row="2"/>
             <sapv:ExpressionTextBox
                 Grid.Row="3"
                 ExpressionType="{Binding ModelItem.Properties[Result].PropertyType.GenericTypeArguments[0]}"
                 OwnerActivity="{Binding ModelItem}"
                 UseLocationExpression="True"
-                Expression="{Binding ModelItem.Result, ConverterParameter=Out, Converter={StaticResource ArgumentToExpressionConverter}}" />
+                Expression="{Binding ModelItem.Result, ConverterParameter=Out, Converter={StaticResource ArgumentToExpressionConverter}}"
+                HintText="Enter a ConfigSection"/>
         </Grid>
     </c:ActivityDecoratorControl>
 </sap:ActivityDesigner>

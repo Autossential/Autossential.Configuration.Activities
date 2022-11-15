@@ -5,7 +5,7 @@ using YamlDotNet.Serialization;
 
 namespace Autossential.Configuration.Core.Resolvers
 {
-    public class YamlSectionResolver : ISectionResolver
+    public class YamlSectionResolver : DictionarySectionResolver
     {
         private readonly Deserializer _deserializer;
         private readonly IParser _yamlContent;
@@ -16,28 +16,10 @@ namespace Autossential.Configuration.Core.Resolvers
             _yamlContent = new MergingParser(new Parser(new StringReader(yamlContent)));
         }
 
-        public void Resolve(ConfigSection config)
+        public override void Resolve(ConfigSection config)
         {
-            var settings = _deserializer.Deserialize<Dictionary<object, object>>(_yamlContent);
+            var settings = _deserializer.Deserialize<Dictionary<string, object>>(_yamlContent);
             ResolveInternal(config, settings);
-        }
-
-        private void ResolveInternal(ConfigSection config, Dictionary<object, object> settings)
-        {
-            foreach (var item in settings)
-            {
-                var key = item.Key.ToString();
-                if (item.Value is Dictionary<object, object> subSettings)
-                {
-                    var subConfig = new ConfigSection();
-                    config[key] = subConfig;
-                    ResolveInternal(subConfig, subSettings);
-                }
-                else
-                {
-                    config[key] = item.Value;
-                }
-            }
         }
     }
 }

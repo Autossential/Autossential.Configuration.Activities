@@ -3,14 +3,17 @@ using Autossential.Configuration.Core.Resolvers;
 using Autossential.Shared.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Autossential.Configuration.Tests
 {
     [TestClass]
     public class JsonConfigTest
     {
-        public static string FileSample = File.ReadAllText(IOSamples.GetSamplePath("sample.json"));
+        static readonly string FileSample = File.ReadAllText(IOSamples.GetSamplePath("sample.json"));
+        static readonly string ComplexSample = File.ReadAllText(IOSamples.GetSamplePath("complex.json"));
 
         [TestMethod]
         public void Keys()
@@ -34,6 +37,18 @@ namespace Autossential.Configuration.Tests
             Assert.IsTrue(config.AsBoolean("Boolean"));
 
             CollectionAssert.AreEqual(new[] { "msedge", "excel" }, config.AsArray("Array"));
+        }
+
+        [TestMethod]
+        public void Complex()
+        {
+            var config = new ConfigSection(new JsonSectionResolver(ComplexSample));
+            var components = config.AsArray("root/components");
+            Assert.AreEqual(3, components.Length);
+            Assert.AreEqual(typeof(Dictionary<string, object>), components[2].GetType());
+
+            var containers = config.AsArray<Dictionary<string, object>>("root/spec/containers");
+            Assert.AreEqual(2, containers.Length);
         }
     }
 }

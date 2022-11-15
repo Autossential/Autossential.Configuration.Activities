@@ -1,12 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 	<PropertyGroup>
-		<TargetFrameworks>net461;net5.0-windows</TargetFrameworks>
+		<TargetFrameworks>net461;net6.0-windows</TargetFrameworks>
 		<UseWPF>true</UseWPF>
-		<Version>1.0.0</Version>
+		<UseWindowsForms>true</UseWindowsForms>
+		<Version>1.1.0</Version>
 	</PropertyGroup>
-
 	<PropertyGroup>
-		<Description>Provides activities to create a rich configuration object based on text files formatted on YAML or JSON standards or from objects like DataTable and Dictionary.</Description>
+		<GeneratedMSBuildEditorConfigFile>$(IntermediateOutputPath)\$(MSBuildProjectName).GeneratedMSBuildEditorConfig.editorconfig</GeneratedMSBuildEditorConfigFile>
+	</PropertyGroup>
+	<PropertyGroup>
+		<Description>Provides activities to create a rich configuration object based on text files formatted as YAML or JSON standards or from objects like DataTable and Dictionary.</Description>
 		<Authors>Alexandre Toledo Perez</Authors>
 		<Copyright>© 2021 Alexandre Toledo Perez</Copyright>
 		<PackageProjectUrl>https://alexandretperez.github.io/Autossential/</PackageProjectUrl>
@@ -39,12 +42,11 @@
 		<Reference Include="System.Xaml" />
 		<Reference Include="WindowsBase" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' != 'net461' ">
-		<PackageReference Include="System.Activities" />
+
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net6'))">
 		<PackageReference Include="UiPath.Workflow" />
+		<PackageReference Include="UiPath.Workflow.Runtime" />
 		<PackageReference Include="System.Activities.Core.Presentation" />
-		<PackageReference Include="System.Activities.Metadata" />
-		<PackageReference Include="UiPath.Activities.Api" />
 	</ItemGroup>
 	
 	<ItemGroup>

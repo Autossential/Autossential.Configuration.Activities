@@ -1,6 +1,6 @@
-﻿using Autossential.Configuration.Core.Resolvers;
-using Autossential.Configuration.Activities.Properties;
+﻿using Autossential.Configuration.Activities.Properties;
 using Autossential.Configuration.Core;
+using Autossential.Configuration.Core.Resolvers;
 using System.Activities;
 using System.Data;
 
@@ -11,6 +11,7 @@ namespace Autossential.Configuration.Activities
         public InArgument<DataTable> DataTable { get; set; }
         public InArgument<string> KeyColumnName { get; set; }
         public InArgument<string> ValueColumnName { get; set; }
+
         protected override void CacheMetadata(CodeActivityMetadata metadata)
         {
             base.CacheMetadata(metadata);

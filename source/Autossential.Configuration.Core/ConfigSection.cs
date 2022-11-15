@@ -1,13 +1,14 @@
 ﻿using Autossential.Configuration.Core.Resolvers;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Autossential.Configuration.Core
 {
-    public class ConfigSection
+    public class ConfigSection : IReadOnlyCollection<ConfigItem>
     {
-        public ConfigItemCollection Items { get; } = new ConfigItemCollection();
+        internal List<ConfigItem> Items { get; } = new List<ConfigItem>();
 
         public int Count => Items.Count;
 
@@ -23,6 +24,7 @@ namespace Autossential.Configuration.Core
         private ConfigSection _parent;
 
         public ConfigSection Parent() => _parent;
+
         public ConfigSection Root()
         {
             var root = this;
@@ -40,7 +42,7 @@ namespace Autossential.Configuration.Core
         public ConfigItem GetItem(string keyPath)
         {
             if (keyPath.IndexOf(DELIMITER) == -1)
-                return Items.Find(keyPath);
+                return Find(keyPath);
 
             var section = this;
             var keys = keyPath.Split(DELIMITER);
@@ -58,6 +60,29 @@ namespace Autossential.Configuration.Core
             return section.GetItem(keys[keys.Length - 1]);
         }
 
+        private ConfigItem Find(string key) => Items.Find(p => p.HasKey(key));
+
+        private ConfigItem AddOrUpdate(string key, object value)
+        {
+            if (value == null)
+            {
+                Items.Remove(Find(key));
+                return null;
+            }
+
+            var item = Find(key);
+            if (item == null)
+            {
+                item = new ConfigItem(key, value);
+                Items.Add(item);
+            }
+            else
+            {
+                item.Value = value;
+            }
+            return item;
+        }
+
         private ConfigItem SetItem(string keyPath, object value)
         {
             if (keyPath.IndexOf(DELIMITER) == -1)
@@ -68,7 +93,7 @@ namespace Autossential.Configuration.Core
                     config._parent = this;
                 }
 
-                return Items.AddOrUpdate(keyPath, value);
+                return AddOrUpdate(keyPath, value);
             }
 
             var section = this;
@@ -111,12 +136,22 @@ namespace Autossential.Configuration.Core
         }
 
         internal const char DELIMITER = '/';
-        public object this[int index] => Items[index];
+
+        public object this[int index]
+        {
+            get
+            {
+                if (index < Items.Count)
+                    return Items[index].Value;
+
+                return null;
+            }
+        }
+
         public bool HasKey(string keyPath) => this[keyPath] != null;
 
         public ConfigSection()
         {
-
         }
 
         public ConfigSection(ISectionResolver resolver)
@@ -156,5 +191,9 @@ namespace Autossential.Configuration.Core
                     this[item.Key] = item.Value;
             }
         }
+
+        public IEnumerator<ConfigItem> GetEnumerator() => Items.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

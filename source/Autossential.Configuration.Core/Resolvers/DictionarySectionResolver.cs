@@ -8,16 +8,19 @@ namespace Autossential.Configuration.Core.Resolvers
     {
         private readonly Dictionary<string, object> _settings;
 
+        protected DictionarySectionResolver() { }
+
         public DictionarySectionResolver(Dictionary<string, object> settings)
         {
             _settings = settings;
         }
 
-        public void Resolve(ConfigSection config)
+        public virtual void Resolve(ConfigSection config)
         {
             ResolveInternal(config, _settings);
         }
-        private void ResolveInternal(ConfigSection config, Dictionary<string, object> settings)
+
+        protected void ResolveInternal(ConfigSection config, Dictionary<string, object> settings)
         {
             foreach (var item in settings)
             {
