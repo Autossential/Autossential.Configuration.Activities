@@ -28,14 +28,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Properties\ResourcesGen.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>ResourcesGen.tt</DependentUpon>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
 		<None Update="Properties\ResourcesGen.tt">
 			<Generator>TextTemplatingFileGenerator</Generator>
 			<LastGenOutput>ResourcesGen.cs</LastGenOutput>
@@ -44,6 +36,14 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Autossential.Configuration.Core\Autossential.Configuration.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Properties\ResourcesGen.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>ResourcesGen.tt</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 </Project>

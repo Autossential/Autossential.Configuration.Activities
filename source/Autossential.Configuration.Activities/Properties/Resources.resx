@@ -133,6 +133,10 @@
     <value>Text content well formatted in YAML or JSON.</value>
     <comment>property description</comment>
   </data>
+  <data name="ConfigParse_Content_DisplayName" xml:space="preserve">
+    <value>Content</value>
+    <comment>property name</comment>
+  </data>
   <data name="ConfigParse_Description" xml:space="preserve">
     <value>Converts the text content in a ConfigSection object.</value>
     <comment>activity description</comment>
@@ -145,9 +149,17 @@
     <value>The ConfigSection object.</value>
     <comment>property description</comment>
   </data>
+  <data name="ConfigParse_Result_DisplayName" xml:space="preserve">
+    <value>Result</value>
+    <comment>property name</comment>
+  </data>
   <data name="DataTableToConfig_DataTable_Description" xml:space="preserve">
     <value>The DataTable where to read the configuration from.</value>
     <comment>property description</comment>
+  </data>
+  <data name="DataTableToConfig_DataTable_DisplayName" xml:space="preserve">
+    <value>DataTable</value>
+    <comment>property name</comment>
   </data>
   <data name="DataTableToConfig_Description" xml:space="preserve">
     <value>Generates a new ConfigSection based on the specified DataTable.</value>
@@ -161,13 +173,25 @@
     <value>The column in DataTable that will be use as configuration key.</value>
     <comment>property description</comment>
   </data>
+  <data name="DataTableToConfig_KeyColumnName_DisplayName" xml:space="preserve">
+    <value>KeyColumnName</value>
+    <comment>property name</comment>
+  </data>
   <data name="DataTableToConfig_Result_Description" xml:space="preserve">
     <value>The ConfigSection object.</value>
     <comment>property description</comment>
   </data>
+  <data name="DataTableToConfig_Result_DisplayName" xml:space="preserve">
+    <value>Result</value>
+    <comment>property name</comment>
+  </data>
   <data name="DataTableToConfig_ValueColumnName_Description" xml:space="preserve">
     <value>The column in DataTable that will be use as configuration value.</value>
     <comment>property description</comment>
+  </data>
+  <data name="DataTableToConfig_ValueColumnName_DisplayName" xml:space="preserve">
+    <value>ValueColumnName</value>
+    <comment>property name</comment>
   </data>
   <data name="DictionaryToConfig_Description" xml:space="preserve">
     <value>Generates a new ConfigSection based on the specified Dictionary.</value>
@@ -177,6 +201,10 @@
     <value>The Dictionary where to read the configuration from.</value>
     <comment>property description</comment>
   </data>
+  <data name="DictionaryToConfig_Dictionary_DisplayName" xml:space="preserve">
+    <value>Dictionary</value>
+    <comment>property name</comment>
+  </data>
   <data name="DictionaryToConfig_DisplayName" xml:space="preserve">
     <value>Dictionary To Config</value>
     <comment>activity name</comment>
@@ -184,6 +212,10 @@
   <data name="DictionaryToConfig_Result_Description" xml:space="preserve">
     <value>The ConfigSection object.</value>
     <comment>property description</comment>
+  </data>
+  <data name="DictionaryToConfig_Result_DisplayName" xml:space="preserve">
+    <value>Result</value>
+    <comment>property name</comment>
   </data>
   <data name="InputOutput_Category" xml:space="preserve">
     <value>Reference</value>
@@ -201,6 +233,10 @@
     <value>The ConfigSection object to which the source ConfigSection is merged.</value>
     <comment>property description</comment>
   </data>
+  <data name="MergeConfig_Destination_DisplayName" xml:space="preserve">
+    <value>Destination</value>
+    <comment>property name</comment>
+  </data>
   <data name="MergeConfig_DisplayName" xml:space="preserve">
     <value>Merge Config</value>
     <comment>activity name</comment>
@@ -209,13 +245,25 @@
     <value>Determines if the source values will override the destination values if they already exists. This value is true by default.</value>
     <comment>property description</comment>
   </data>
+  <data name="MergeConfig_Override_DisplayName" xml:space="preserve">
+    <value>Override</value>
+    <comment>property name</comment>
+  </data>
   <data name="MergeConfig_SectionName_Description" xml:space="preserve">
     <value>If defined, creates a sub-section to destination object with the name specified and merge the values to it.</value>
     <comment>property description</comment>
   </data>
+  <data name="MergeConfig_SectionName_DisplayName" xml:space="preserve">
+    <value>SectionName</value>
+    <comment>property name</comment>
+  </data>
   <data name="MergeConfig_Source_Description" xml:space="preserve">
     <value>The ConfigSection object to be added to the destination ConfigSection.</value>
     <comment>property description</comment>
+  </data>
+  <data name="MergeConfig_Source_DisplayName" xml:space="preserve">
+    <value>Source</value>
+    <comment>property name</comment>
   </data>
   <data name="Options_Category" xml:space="preserve">
     <value>Options</value>
@@ -237,13 +285,25 @@
     <value>The file path where to read the configuration from.</value>
     <comment>property description</comment>
   </data>
+  <data name="ReadConfigFile_FilePath_DisplayName" xml:space="preserve">
+    <value>FilePath</value>
+    <comment>property name</comment>
+  </data>
   <data name="ReadConfigFile_FileType_Description" xml:space="preserve">
     <value>The content file type of the configuration file.</value>
     <comment>property description</comment>
   </data>
+  <data name="ReadConfigFile_FileType_DisplayName" xml:space="preserve">
+    <value>FileType</value>
+    <comment>property name</comment>
+  </data>
   <data name="ReadConfigFile_Result_Description" xml:space="preserve">
     <value>The ConfigSection object.</value>
     <comment>property description</comment>
+  </data>
+  <data name="ReadConfigFile_Result_DisplayName" xml:space="preserve">
+    <value>Result</value>
+    <comment>property name</comment>
   </data>
   <data name="Validation_TypeError" xml:space="preserve">
     <value>Please provide a value of type {0} for {1}.</value>

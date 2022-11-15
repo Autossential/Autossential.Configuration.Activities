@@ -4,7 +4,8 @@
     xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
     xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation"
     xmlns:sapc="clr-namespace:System.Activities.Presentation.Converters;assembly=System.Activities.Presentation"
-    xmlns:c="clr-namespace:Autossential.Shared.Activities.Design.Controls">
+    xmlns:c="clr-namespace:Autossential.Shared.Activities.Design.Controls"
+    xmlns:as="clr-namespace:Autossential.Configuration.Activities.Properties;assembly=Autossential.Configuration.Activities">
 
     <sap:ActivityDesigner.Resources>
         <ResourceDictionary>
@@ -21,13 +22,17 @@
 
     <c:ActivityDecoratorControl Style="{StaticResource ActivityDecoratorStyle}">
         <StackPanel Width="300">
-            <Label Content="DataTable" Grid.Row="0" />
+            <Label 
+                Content="{x:Static as:Resources.DataTableToConfig_DataTable_DisplayName}"
+                ToolTip="{x:Static as:Resources.DataTableToConfig_DataTable_Description}"
+                Grid.Row="0" />
             <sapv:ExpressionTextBox
                 Grid.Row="1"
                 ExpressionType="{Binding ModelItem.Properties[DataTable].PropertyType.GenericTypeArguments[0]}"
                 OwnerActivity="{Binding ModelItem}"
                 UseLocationExpression="False"
-                Expression="{Binding ModelItem.DataTable, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
+                Expression="{Binding ModelItem.DataTable, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}"
+                HintText="Enter a data table"/>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -39,31 +44,39 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Label Content="KeyColumnName" Grid.Row="0" Grid.Column="0" />
+                <Label Grid.Row="0" Grid.Column="0"
+                       Content="{x:Static as:Resources.DataTableToConfig_KeyColumnName_DisplayName}"
+                       ToolTip="{x:Static as:Resources.DataTableToConfig_KeyColumnName_Description}"/>
                 <sapv:ExpressionTextBox
                     Grid.Row="1"
                     Grid.Column="0"
                     ExpressionType="{Binding ModelItem.Properties[KeyColumnName].PropertyType.GenericTypeArguments[0]}"
                     OwnerActivity="{Binding ModelItem}"
                     UseLocationExpression="False"
-                    Expression="{Binding ModelItem.KeyColumnName, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
+                    Expression="{Binding ModelItem.KeyColumnName, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}"
+                    HintText="Enter a column name"/>
 
-                <Label Content="ValueColumnName" Grid.Row="0" Grid.Column="2" />
+                <Label Grid.Row="0" Grid.Column="2"
+                       Content="{x:Static as:Resources.DataTableToConfig_ValueColumnName_DisplayName}"
+                       ToolTip="{x:Static as:Resources.DataTableToConfig_ValueColumnName_Description}"/>
                 <sapv:ExpressionTextBox
                     Grid.Row="1"
                     Grid.Column="2"
                     ExpressionType="{Binding ModelItem.Properties[ValueColumnName].PropertyType.GenericTypeArguments[0]}"
                     OwnerActivity="{Binding ModelItem}"
                     UseLocationExpression="False"
-                    Expression="{Binding ModelItem.ValueColumnName, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
+                    Expression="{Binding ModelItem.ValueColumnName, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}"
+                    HintText="Enter a column name"/>
             </Grid>
-            <c:BadgeLabelControl Label="Result" Badge="Out" Grid.Row="2"/>
+            <c:BadgeLabelControl Label="{x:Static as:Resources.DataTableToConfig_Result_DisplayName}"
+                                 ToolTip="{x:Static as:Resources.DataTableToConfig_Result_Description}" Badge="Out" Grid.Row="2"/>
             <sapv:ExpressionTextBox
                 Grid.Row="3"
                 ExpressionType="{Binding ModelItem.Properties[Result].PropertyType.GenericTypeArguments[0]}"
                 OwnerActivity="{Binding ModelItem}"
                 UseLocationExpression="True"
-                Expression="{Binding ModelItem.Result, ConverterParameter=Out, Converter={StaticResource ArgumentToExpressionConverter}}" />
+                Expression="{Binding ModelItem.Result, ConverterParameter=Out, Converter={StaticResource ArgumentToExpressionConverter}}"
+                HintText="Enter a ConfigSection"/>
         </StackPanel>
     </c:ActivityDecoratorControl>
 </sap:ActivityDesigner>

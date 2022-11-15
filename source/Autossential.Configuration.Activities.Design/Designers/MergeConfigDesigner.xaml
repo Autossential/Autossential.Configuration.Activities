@@ -4,7 +4,8 @@
     xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
     xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation"
     xmlns:sapc="clr-namespace:System.Activities.Presentation.Converters;assembly=System.Activities.Presentation"
-    xmlns:c="clr-namespace:Autossential.Shared.Activities.Design.Controls">
+    xmlns:c="clr-namespace:Autossential.Shared.Activities.Design.Controls"
+    xmlns:as="clr-namespace:Autossential.Configuration.Activities.Properties;assembly=Autossential.Configuration.Activities">
 
     <sap:ActivityDesigner.Resources>
         <ResourceDictionary>
@@ -31,23 +32,28 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Label Content="Source" Grid.Row="0" Grid.Column="0" />
+            <Label Grid.Row="0" Grid.Column="0"   
+                   Content="{x:Static as:Resources.MergeConfig_Source_DisplayName}"
+                   ToolTip="{x:Static as:Resources.MergeConfig_Source_Description}" />
             <sapv:ExpressionTextBox
                 Grid.Row="1"
                 Grid.Column="0"
                 ExpressionType="{Binding ModelItem.Properties[Source].PropertyType.GenericTypeArguments[0]}"
                 OwnerActivity="{Binding ModelItem}"
                 UseLocationExpression="False"
-                Expression="{Binding ModelItem.Source, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
+                Expression="{Binding ModelItem.Source, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}"
+                HintText="Enter a ConfigSection"/>
 
-            <c:BadgeLabelControl Label="Destination" Badge="InOut" Grid.Row="0" Grid.Column="2"/>
+            <c:BadgeLabelControl Label="{x:Static as:Resources.MergeConfig_Destination_DisplayName}"
+                                 ToolTip="{x:Static as:Resources.MergeConfig_Destination_Description}" Badge="InOut" Grid.Row="0" Grid.Column="2"/>
             <sapv:ExpressionTextBox
                 Grid.Row="1"
                 Grid.Column="2"
                 ExpressionType="{Binding ModelItem.Properties[Destination].PropertyType.GenericTypeArguments[0]}"
                 OwnerActivity="{Binding ModelItem}"
                 UseLocationExpression="True"
-                Expression="{Binding ModelItem.Destination, ConverterParameter=InOut, Converter={StaticResource ArgumentToExpressionConverter}}" />
+                Expression="{Binding ModelItem.Destination, ConverterParameter=InOut, Converter={StaticResource ArgumentToExpressionConverter}}"
+                HintText="Enter a ConfigSection"/>
         </Grid>
     </c:ActivityDecoratorControl>
 </sap:ActivityDesigner>

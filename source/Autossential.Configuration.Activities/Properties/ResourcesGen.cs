@@ -80,13 +80,31 @@ namespace Autossential.Configuration.Activities.Properties
 
         
         /// <summary>
+        /// Looks up a localized string similar to 'FileType'.
+        /// </summary>
+        public static string ReadConfigFile_FileType_DisplayName => ResourceManager.GetString("ReadConfigFile_FileType_DisplayName", Culture);
+    
+
+        /// <summary>
+        /// Looks up a localized string similar to 'Override'.
+        /// </summary>
+        public static string MergeConfig_Override_DisplayName => ResourceManager.GetString("MergeConfig_Override_DisplayName", Culture);
+    
+
+        /// <summary>
         /// Looks up a localized string similar to 'Please provide a value for {0}.'.
         /// </summary>
         public static string Validation_ValueError => ResourceManager.GetString("Validation_ValueError", Culture);
     
 
         /// <summary>
-        /// Looks up a localized string similar to 'Merges two ConfigSection objects in a way that the destination object values are overwritten by the source object. This also applies to sub-sections.'.
+        /// Looks up a localized string similar to 'Dictionary'.
+        /// </summary>
+        public static string DictionaryToConfig_Dictionary_DisplayName => ResourceManager.GetString("DictionaryToConfig_Dictionary_DisplayName", Culture);
+    
+
+        /// <summary>
+        /// Looks up a localized string similar to 'Merges two ConfigSection objects by copying the values from Source config to Destination config. This also applies to sub-sections.'.
         /// </summary>
         public static string MergeConfig_Description => ResourceManager.GetString("MergeConfig_Description", Culture);
     
@@ -95,6 +113,12 @@ namespace Autossential.Configuration.Activities.Properties
         /// Looks up a localized string similar to 'Specifies the amount of time in milliseconds to wait for the activity to run before an error is thrown. The default value is 30000 (30s).'.
         /// </summary>
         public static string Common_Timeout => ResourceManager.GetString("Common_Timeout", Culture);
+    
+
+        /// <summary>
+        /// Looks up a localized string similar to 'Result'.
+        /// </summary>
+        public static string DataTableToConfig_Result_DisplayName => ResourceManager.GetString("DataTableToConfig_Result_DisplayName", Culture);
     
 
         /// <summary>
@@ -110,9 +134,27 @@ namespace Autossential.Configuration.Activities.Properties
     
 
         /// <summary>
+        /// Looks up a localized string similar to 'Result'.
+        /// </summary>
+        public static string ConfigParse_Result_DisplayName => ResourceManager.GetString("ConfigParse_Result_DisplayName", Culture);
+    
+
+        /// <summary>
         /// Looks up a localized string similar to 'The DataTable where to read the configuration from.'.
         /// </summary>
         public static string DataTableToConfig_DataTable_Description => ResourceManager.GetString("DataTableToConfig_DataTable_Description", Culture);
+    
+
+        /// <summary>
+        /// Looks up a localized string similar to 'DataTable'.
+        /// </summary>
+        public static string DataTableToConfig_DataTable_DisplayName => ResourceManager.GetString("DataTableToConfig_DataTable_DisplayName", Culture);
+    
+
+        /// <summary>
+        /// Looks up a localized string similar to 'KeyColumnName'.
+        /// </summary>
+        public static string DataTableToConfig_KeyColumnName_DisplayName => ResourceManager.GetString("DataTableToConfig_KeyColumnName_DisplayName", Culture);
     
 
         /// <summary>
@@ -212,6 +254,30 @@ namespace Autossential.Configuration.Activities.Properties
     
 
         /// <summary>
+        /// Looks up a localized string similar to 'FilePath'.
+        /// </summary>
+        public static string ReadConfigFile_FilePath_DisplayName => ResourceManager.GetString("ReadConfigFile_FilePath_DisplayName", Culture);
+    
+
+        /// <summary>
+        /// Looks up a localized string similar to 'Source'.
+        /// </summary>
+        public static string MergeConfig_Source_DisplayName => ResourceManager.GetString("MergeConfig_Source_DisplayName", Culture);
+    
+
+        /// <summary>
+        /// Looks up a localized string similar to 'Converts the text content in a ConfigSection object.'.
+        /// </summary>
+        public static string ConfigParse_Description => ResourceManager.GetString("ConfigParse_Description", Culture);
+    
+
+        /// <summary>
+        /// Looks up a localized string similar to 'Text content well formatted in YAML or JSON.'.
+        /// </summary>
+        public static string ConfigParse_Content_Description => ResourceManager.GetString("ConfigParse_Content_Description", Culture);
+    
+
+        /// <summary>
         /// Looks up a localized string similar to 'The ConfigSection object to be added to the destination ConfigSection.'.
         /// </summary>
         public static string MergeConfig_Source_Description => ResourceManager.GetString("MergeConfig_Source_Description", Culture);
@@ -224,9 +290,27 @@ namespace Autossential.Configuration.Activities.Properties
     
 
         /// <summary>
+        /// Looks up a localized string similar to 'Config Parse'.
+        /// </summary>
+        public static string ConfigParse_DisplayName => ResourceManager.GetString("ConfigParse_DisplayName", Culture);
+    
+
+        /// <summary>
         /// Looks up a localized string similar to 'The ConfigSection object.'.
         /// </summary>
         public static string DictionaryToConfig_Result_Description => ResourceManager.GetString("DictionaryToConfig_Result_Description", Culture);
+    
+
+        /// <summary>
+        /// Looks up a localized string similar to 'Result'.
+        /// </summary>
+        public static string ReadConfigFile_Result_DisplayName => ResourceManager.GetString("ReadConfigFile_Result_DisplayName", Culture);
+    
+
+        /// <summary>
+        /// Looks up a localized string similar to 'SectionName'.
+        /// </summary>
+        public static string MergeConfig_SectionName_DisplayName => ResourceManager.GetString("MergeConfig_SectionName_DisplayName", Culture);
     
 
         /// <summary>
@@ -242,9 +326,27 @@ namespace Autossential.Configuration.Activities.Properties
     
 
         /// <summary>
+        /// Looks up a localized string similar to 'Destination'.
+        /// </summary>
+        public static string MergeConfig_Destination_DisplayName => ResourceManager.GetString("MergeConfig_Destination_DisplayName", Culture);
+    
+
+        /// <summary>
+        /// Looks up a localized string similar to 'Result'.
+        /// </summary>
+        public static string DictionaryToConfig_Result_DisplayName => ResourceManager.GetString("DictionaryToConfig_Result_DisplayName", Culture);
+    
+
+        /// <summary>
         /// Looks up a localized string similar to 'The ConfigSection object.'.
         /// </summary>
         public static string ReadConfigFile_Result_Description => ResourceManager.GetString("ReadConfigFile_Result_Description", Culture);
+    
+
+        /// <summary>
+        /// Looks up a localized string similar to 'ValueColumnName'.
+        /// </summary>
+        public static string DataTableToConfig_ValueColumnName_DisplayName => ResourceManager.GetString("DataTableToConfig_ValueColumnName_DisplayName", Culture);
     
 
         /// <summary>
@@ -258,6 +360,18 @@ namespace Autossential.Configuration.Activities.Properties
         /// </summary>
         public static string ReadConfigFile_FileType_Description => ResourceManager.GetString("ReadConfigFile_FileType_Description", Culture);
     
+
+        /// <summary>
+        /// Looks up a localized string similar to 'Content'.
+        /// </summary>
+        public static string ConfigParse_Content_DisplayName => ResourceManager.GetString("ConfigParse_Content_DisplayName", Culture);
+    
+
+        /// <summary>
+        /// Looks up a localized string similar to 'The ConfigSection object.'.
+        /// </summary>
+        public static string ConfigParse_Result_Description => ResourceManager.GetString("ConfigParse_Result_Description", Culture);
+    
    
 
         // ####### RESOURCE NAMES ###########################################
@@ -269,9 +383,27 @@ namespace Autossential.Configuration.Activities.Properties
         {
             
             /// <summary>
+            /// Stores the resource name 'ReadConfigFile_FileType_DisplayName'.
+            /// </summary>
+            public const string ReadConfigFile_FileType_DisplayName = "ReadConfigFile_FileType_DisplayName";
+        
+
+            /// <summary>
+            /// Stores the resource name 'MergeConfig_Override_DisplayName'.
+            /// </summary>
+            public const string MergeConfig_Override_DisplayName = "MergeConfig_Override_DisplayName";
+        
+
+            /// <summary>
             /// Stores the resource name 'Validation_ValueError'.
             /// </summary>
             public const string Validation_ValueError = "Validation_ValueError";
+        
+
+            /// <summary>
+            /// Stores the resource name 'DictionaryToConfig_Dictionary_DisplayName'.
+            /// </summary>
+            public const string DictionaryToConfig_Dictionary_DisplayName = "DictionaryToConfig_Dictionary_DisplayName";
         
 
             /// <summary>
@@ -287,6 +419,12 @@ namespace Autossential.Configuration.Activities.Properties
         
 
             /// <summary>
+            /// Stores the resource name 'DataTableToConfig_Result_DisplayName'.
+            /// </summary>
+            public const string DataTableToConfig_Result_DisplayName = "DataTableToConfig_Result_DisplayName";
+        
+
+            /// <summary>
             /// Stores the resource name 'DictionaryToConfig_Description'.
             /// </summary>
             public const string DictionaryToConfig_Description = "DictionaryToConfig_Description";
@@ -299,9 +437,27 @@ namespace Autossential.Configuration.Activities.Properties
         
 
             /// <summary>
+            /// Stores the resource name 'ConfigParse_Result_DisplayName'.
+            /// </summary>
+            public const string ConfigParse_Result_DisplayName = "ConfigParse_Result_DisplayName";
+        
+
+            /// <summary>
             /// Stores the resource name 'DataTableToConfig_DataTable_Description'.
             /// </summary>
             public const string DataTableToConfig_DataTable_Description = "DataTableToConfig_DataTable_Description";
+        
+
+            /// <summary>
+            /// Stores the resource name 'DataTableToConfig_DataTable_DisplayName'.
+            /// </summary>
+            public const string DataTableToConfig_DataTable_DisplayName = "DataTableToConfig_DataTable_DisplayName";
+        
+
+            /// <summary>
+            /// Stores the resource name 'DataTableToConfig_KeyColumnName_DisplayName'.
+            /// </summary>
+            public const string DataTableToConfig_KeyColumnName_DisplayName = "DataTableToConfig_KeyColumnName_DisplayName";
         
 
             /// <summary>
@@ -401,6 +557,30 @@ namespace Autossential.Configuration.Activities.Properties
         
 
             /// <summary>
+            /// Stores the resource name 'ReadConfigFile_FilePath_DisplayName'.
+            /// </summary>
+            public const string ReadConfigFile_FilePath_DisplayName = "ReadConfigFile_FilePath_DisplayName";
+        
+
+            /// <summary>
+            /// Stores the resource name 'MergeConfig_Source_DisplayName'.
+            /// </summary>
+            public const string MergeConfig_Source_DisplayName = "MergeConfig_Source_DisplayName";
+        
+
+            /// <summary>
+            /// Stores the resource name 'ConfigParse_Description'.
+            /// </summary>
+            public const string ConfigParse_Description = "ConfigParse_Description";
+        
+
+            /// <summary>
+            /// Stores the resource name 'ConfigParse_Content_Description'.
+            /// </summary>
+            public const string ConfigParse_Content_Description = "ConfigParse_Content_Description";
+        
+
+            /// <summary>
             /// Stores the resource name 'MergeConfig_Source_Description'.
             /// </summary>
             public const string MergeConfig_Source_Description = "MergeConfig_Source_Description";
@@ -413,9 +593,27 @@ namespace Autossential.Configuration.Activities.Properties
         
 
             /// <summary>
+            /// Stores the resource name 'ConfigParse_DisplayName'.
+            /// </summary>
+            public const string ConfigParse_DisplayName = "ConfigParse_DisplayName";
+        
+
+            /// <summary>
             /// Stores the resource name 'DictionaryToConfig_Result_Description'.
             /// </summary>
             public const string DictionaryToConfig_Result_Description = "DictionaryToConfig_Result_Description";
+        
+
+            /// <summary>
+            /// Stores the resource name 'ReadConfigFile_Result_DisplayName'.
+            /// </summary>
+            public const string ReadConfigFile_Result_DisplayName = "ReadConfigFile_Result_DisplayName";
+        
+
+            /// <summary>
+            /// Stores the resource name 'MergeConfig_SectionName_DisplayName'.
+            /// </summary>
+            public const string MergeConfig_SectionName_DisplayName = "MergeConfig_SectionName_DisplayName";
         
 
             /// <summary>
@@ -431,9 +629,27 @@ namespace Autossential.Configuration.Activities.Properties
         
 
             /// <summary>
+            /// Stores the resource name 'MergeConfig_Destination_DisplayName'.
+            /// </summary>
+            public const string MergeConfig_Destination_DisplayName = "MergeConfig_Destination_DisplayName";
+        
+
+            /// <summary>
+            /// Stores the resource name 'DictionaryToConfig_Result_DisplayName'.
+            /// </summary>
+            public const string DictionaryToConfig_Result_DisplayName = "DictionaryToConfig_Result_DisplayName";
+        
+
+            /// <summary>
             /// Stores the resource name 'ReadConfigFile_Result_Description'.
             /// </summary>
             public const string ReadConfigFile_Result_Description = "ReadConfigFile_Result_Description";
+        
+
+            /// <summary>
+            /// Stores the resource name 'DataTableToConfig_ValueColumnName_DisplayName'.
+            /// </summary>
+            public const string DataTableToConfig_ValueColumnName_DisplayName = "DataTableToConfig_ValueColumnName_DisplayName";
         
 
             /// <summary>
@@ -446,6 +662,18 @@ namespace Autossential.Configuration.Activities.Properties
             /// Stores the resource name 'ReadConfigFile_FileType_Description'.
             /// </summary>
             public const string ReadConfigFile_FileType_Description = "ReadConfigFile_FileType_Description";
+        
+
+            /// <summary>
+            /// Stores the resource name 'ConfigParse_Content_DisplayName'.
+            /// </summary>
+            public const string ConfigParse_Content_DisplayName = "ConfigParse_Content_DisplayName";
+        
+
+            /// <summary>
+            /// Stores the resource name 'ConfigParse_Result_Description'.
+            /// </summary>
+            public const string ConfigParse_Result_Description = "ConfigParse_Result_Description";
         
         }
     }

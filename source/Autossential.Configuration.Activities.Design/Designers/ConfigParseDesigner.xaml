@@ -4,7 +4,8 @@
     xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
     xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation"
     xmlns:sapc="clr-namespace:System.Activities.Presentation.Converters;assembly=System.Activities.Presentation"
-    xmlns:c="clr-namespace:Autossential.Shared.Activities.Design.Controls">
+    xmlns:c="clr-namespace:Autossential.Shared.Activities.Design.Controls"
+    xmlns:as="clr-namespace:Autossential.Configuration.Activities.Properties;assembly=Autossential.Configuration.Activities">
 
     <sap:ActivityDesigner.Resources>
         <ResourceDictionary>
@@ -21,19 +22,26 @@
 
     <c:ActivityDecoratorControl Style="{StaticResource ActivityDecoratorStyle}">
         <StackPanel Width="300">
-            <Label Content="Content (Yaml/Json)"/>
+            <Label 
+                Content="{x:Static as:Resources.ConfigParse_Content_DisplayName}"
+                ToolTip="{x:Static as:Resources.ConfigParse_Content_Description}"/>
+            
             <sapv:ExpressionTextBox
                 ExpressionType="{Binding ModelItem.Properties[Content].PropertyType.GenericTypeArguments[0]}"
                 OwnerActivity="{Binding ModelItem}"
                 UseLocationExpression="False"
-                Expression="{Binding ModelItem.Content, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
+                Expression="{Binding ModelItem.Content, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}"
+                HintText="Enter a YAML or JSON content"/>
 
-            <c:BadgeLabelControl Label="Result" Badge="Out"/>
+            <c:BadgeLabelControl Label="{x:Static as:Resources.ConfigParse_Result_DisplayName}"
+                                 ToolTip="{x:Static as:Resources.ConfigParse_Result_Description}"
+                                 Badge="Out"/>
             <sapv:ExpressionTextBox
                 ExpressionType="{Binding ModelItem.Properties[Result].PropertyType.GenericTypeArguments[0]}"
                 OwnerActivity="{Binding ModelItem}"
                 UseLocationExpression="True"
-                Expression="{Binding ModelItem.Result, ConverterParameter=Out, Converter={StaticResource ArgumentToExpressionConverter}}" />
+                Expression="{Binding ModelItem.Result, ConverterParameter=Out, Converter={StaticResource ArgumentToExpressionConverter}}"
+                HintText="Enter a ConfigSection"/>
         </StackPanel>
     </c:ActivityDecoratorControl>
 </sap:ActivityDesigner>
