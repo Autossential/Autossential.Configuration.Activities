@@ -14,7 +14,6 @@
 		<Authors>Alexandre Toledo Perez</Authors>
 		<PackageTags>UiPath;Autossential;Configuration;Activities;Json;Yaml;Yml</PackageTags>
 		<Product>Autossential.Configuration.Activities.Packaging</Product>
-		<PackageOutputPath>..\..\..\Output\</PackageOutputPath>
 		<TargetsForTfmSpecificBuildOutput>AddDlls</TargetsForTfmSpecificBuildOutput>
 		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
 		<PackageIcon>packageIcon.png</PackageIcon>
@@ -23,6 +22,10 @@
 
 	<PropertyGroup Condition="'$(Configuration)' == 'Debug' AND '$(DesignTimeBuild)' != 'true'">
 		<PackageVersion>$(Version)-dev.$(VersionBuild)$(VersionRevision)</PackageVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+		<PackageOutputPath>..\..\..\Output\</PackageOutputPath>
 	</PropertyGroup>
 
 	<ItemGroup>
