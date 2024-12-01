@@ -26,14 +26,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="packageIcon.png" />
+		<None Remove="packageIcon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="packageIcon.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </EmbeddedResource>
+		<EmbeddedResource Include="packageIcon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -70,12 +70,15 @@
 	</Target>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Autossential.Configuration.Activities.Design\Autossential.Configuration.Activities.Design.csproj">
-	    <PrivateAssets>All</PrivateAssets>
-	  </ProjectReference>
-	  <ProjectReference Include="..\Autossential.Configuration.Activities\Autossential.Configuration.Activities.csproj">
-	    <PrivateAssets>All</PrivateAssets>
-	  </ProjectReference>
+		<ProjectReference Include="..\Autossential.Configuration.Activities.Design\Autossential.Configuration.Activities.Design.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\Autossential.Configuration.Activities\Autossential.Configuration.Activities.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\Autossential.Configuration.Core\Autossential.Configuration.Core.csproj">
+			<PrivateAssets>All</PrivateAssets>
+		</ProjectReference>
 	</ItemGroup>
 
 </Project>

@@ -18,8 +18,9 @@
 		<Reference Include="WindowsBase" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(TargetFramework.StartsWith('net6'))">
+	<ItemGroup Condition="$(TargetFramework) == 'net6.0-windows'">
 		<PackageReference Include="UiPath.Workflow" />
+		<PackageReference Include="UiPath.Workflow.Runtime" />
 		<PackageReference Include="System.Activities.Core.Presentation" />
 	</ItemGroup>
 
