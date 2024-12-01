@@ -1,0 +1,34 @@
+AppSettings:
+  Setting1: "Value1"
+  Setting2: 10
+  Setting3: true
+  NestedSetting:
+    SubSetting1: "SubValue1"
+    SubSetting2: 3.14
+    ArraySetting:
+      - "Item1"
+      - "Item2"
+      - "Item3"
+  ListOfSettings:
+    - Name: "SettingA"
+      Value: "ValueA"
+    - Name: "SettingB"
+      Value: "ValueB"
+
+FeatureFlags:
+  Feature1: true
+  Feature2: false
+  BetaFeatures:
+    - "Beta1"
+    - "Beta2"
+    - "Beta3"
+
+Logging:
+  LogLevel:
+    Default: "Warning"
+    System: "Information"
+    Microsoft: "Information"
+  LogOutputs:
+    - Type: "File"
+      Path: "/var/logs/app.log"
+    - Type: "Console"

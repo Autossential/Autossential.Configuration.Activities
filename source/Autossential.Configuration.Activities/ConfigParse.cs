@@ -8,6 +8,7 @@ namespace Autossential.Configuration.Activities
     public sealed class ConfigParse : CodeActivity<ConfigSection>
     {
         public InArgument<string> Content { get; set; }
+
         protected override void CacheMetadata(CodeActivityMetadata metadata)
         {
             base.CacheMetadata(metadata);

@@ -7,7 +7,7 @@ namespace Autossential.Configuration.Core
     [DebuggerDisplay("{Key}: {Value}")]
     public class ConfigItem : IEqualityComparer<ConfigItem>, IEquatable<ConfigItem>
     {
-        internal ConfigItem(string key, object value)
+        public ConfigItem(string key, object value)
         {
             Key = key;
             Value = value;

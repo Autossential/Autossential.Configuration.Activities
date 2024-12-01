@@ -1,4 +1,14 @@
-﻿// ################################
+﻿
+
+
+
+
+
+
+
+
+
+// ################################
 // THIS FILE IS AUTO-GENERATE BY T4
 // ################################
 
@@ -73,6 +83,16 @@ namespace Autossential.Configuration.Activities.Properties
         public static string Validation_TypeErrorFormat(object arg0, object arg1)
         {
             return string.Format(Culture, Validation_TypeError, arg0, arg1);
+        }
+
+        /// <summary>
+        /// Looks up a localized string similar to 'The value of {0} cannot be empty.'.
+        /// </summary>
+        /// <param name="arg0">An object (0) to format.</param>
+        /// <returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
+        public static string Validation_EmptyStringErrorFormat(object arg0)
+        {
+            return string.Format(Culture, Validation_EmptyStringError, arg0);
         }
    
 
@@ -353,6 +373,12 @@ namespace Autossential.Configuration.Activities.Properties
         /// Looks up a localized string similar to 'The column in DataTable that will be use as configuration key.'.
         /// </summary>
         public static string DataTableToConfig_KeyColumnName_Description => ResourceManager.GetString("DataTableToConfig_KeyColumnName_Description", Culture);
+    
+
+        /// <summary>
+        /// Looks up a localized string similar to 'The value of {0} cannot be empty.'.
+        /// </summary>
+        public static string Validation_EmptyStringError => ResourceManager.GetString("Validation_EmptyStringError", Culture);
     
 
         /// <summary>
@@ -659,6 +685,12 @@ namespace Autossential.Configuration.Activities.Properties
         
 
             /// <summary>
+            /// Stores the resource name 'Validation_EmptyStringError'.
+            /// </summary>
+            public const string Validation_EmptyStringError = "Validation_EmptyStringError";
+        
+
+            /// <summary>
             /// Stores the resource name 'ReadConfigFile_FileType_Description'.
             /// </summary>
             public const string ReadConfigFile_FileType_Description = "ReadConfigFile_FileType_Description";
@@ -675,6 +707,7 @@ namespace Autossential.Configuration.Activities.Properties
             /// </summary>
             public const string ConfigParse_Result_Description = "ConfigParse_Result_Description";
         
+
         }
     }
 }

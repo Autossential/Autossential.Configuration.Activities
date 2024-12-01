@@ -1,24 +1,10 @@
-﻿using System;
+﻿using System.Activities;
 using System.Activities.Expressions;
-using System.Activities;
 using System.Activities.Presentation.Model;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Runtime.CompilerServices;
-using Autossential.Shared.Activities.Design;
 
 namespace Autossential.Shared.Activities.Design.Controls
 {
@@ -87,6 +73,7 @@ namespace Autossential.Shared.Activities.Design.Controls
         }
 
         private ModelItem _expression;
+
         public ModelItem Expression
         {
             get => _expression;

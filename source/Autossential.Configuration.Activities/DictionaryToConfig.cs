@@ -1,6 +1,7 @@
 ﻿using Autossential.Configuration.Activities.Properties;
 using Autossential.Configuration.Core;
 using Autossential.Configuration.Core.Resolvers;
+using System;
 using System.Activities;
 using System.Collections.Generic;
 
@@ -20,7 +21,7 @@ namespace Autossential.Configuration.Activities
 
         protected override ConfigSection Execute(CodeActivityContext context)
         {
-            var dic = Dictionary.Get(context);
+            var dic = Dictionary.Get(context) ?? throw new ArgumentNullException(nameof(Dictionary));
             return new ConfigSection(new DictionarySectionResolver(dic));
         }
     }

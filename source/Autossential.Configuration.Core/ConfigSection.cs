@@ -8,20 +8,100 @@ namespace Autossential.Configuration.Core
 {
     public class ConfigSection : IReadOnlyCollection<ConfigItem>
     {
-        internal List<ConfigItem> Items { get; } = new List<ConfigItem>();
-
-        public int Count => Items.Count;
-
-        public string Name => UniqueName?.Split(DELIMITER).LastOrDefault();
-
-        public string UniqueName { get; private set; }
-
-        private static string CreateUniqueName(string currentSectionUniqueName, string key) =>
-            (currentSectionUniqueName + DELIMITER + key).TrimStart(DELIMITER);
+        internal const char DELIMITER = '/';
 
         private readonly Dictionary<string, ConfigItem> _cache = new Dictionary<string, ConfigItem>(StringComparer.OrdinalIgnoreCase);
 
         private ConfigSection _parent;
+
+        public bool KeepCache { get; set; }
+
+        public ConfigSection()
+        {
+        }
+
+        public ConfigSection(ISectionResolver resolver)
+        {
+            resolver.Resolve(this);
+        }
+
+        public int Count => Items.Count;
+        public string Name => AbsoluteName?.Split(DELIMITER).LastOrDefault();
+        public string AbsoluteName { get; private set; }
+        internal List<ConfigItem> Items { get; } = new List<ConfigItem>();
+
+        public object this[string keyPath]
+        {
+            get
+            {
+                if (_cache.ContainsKey(keyPath))
+                    return _cache[keyPath].Value;
+
+                return AsConfigItem(keyPath)?.Value;
+            }
+            set
+            {
+                var item = SetItem(keyPath, value);
+                if (item == null)
+                    _cache.Remove(keyPath);
+                else
+                    _cache[keyPath] = item;
+            }
+        }
+
+        public object this[int index]
+        {
+            get
+            {
+                if (index < Items.Count)
+                    return Items[index].Value;
+
+                return null;
+            }
+        }
+
+        public ConfigItem AsConfigItem(string keyPath)
+        {
+            if (keyPath.IndexOf(DELIMITER) == -1)
+                return Find(keyPath);
+
+            var section = this;
+            var keys = keyPath.Split(DELIMITER);
+            for (int i = 0; i < keys.Length - 1; i++)
+            {
+                var key = keys[i];
+                if (section.AsConfigItem(key)?.Value is ConfigSection config)
+                {
+                    section = config;
+                    continue;
+                }
+                return null;
+            }
+
+            return section.AsConfigItem(keys[keys.Length - 1]);
+        }
+
+        public IEnumerator<ConfigItem> GetEnumerator() => Items.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        public bool HasKey(string keyPath) => this[keyPath] != null;
+
+        public bool HasSection(string keyPath) => Section(keyPath) != null;
+
+        public void Merge(ConfigSection other, bool @override)
+        {
+            foreach (var item in other.Items)
+            {
+                if (item.Value is ConfigSection otherSection && HasSection(item.Key))
+                {
+                    Section(item.Key).Merge(otherSection, @override);
+                    continue;
+                }
+
+                if (@override || !HasKey(item.Key))
+                    this[item.Key] = item.Value;
+            }
+        }
 
         public ConfigSection Parent() => _parent;
 
@@ -39,28 +119,24 @@ namespace Autossential.Configuration.Core
             return root;
         }
 
-        public ConfigItem GetItem(string keyPath)
+        public ConfigSection Section(string keyPath)
         {
-            if (keyPath.IndexOf(DELIMITER) == -1)
-                return Find(keyPath);
+            if (this[keyPath] is ConfigSection section)
+                return section;
 
-            var section = this;
-            var keys = keyPath.Split(DELIMITER);
-            for (int i = 0; i < keys.Length - 1; i++)
-            {
-                var key = keys[i];
-                if (section.GetItem(key)?.Value is ConfigSection config)
-                {
-                    section = config;
-                    continue;
-                }
-                return null;
-            }
-
-            return section.GetItem(keys[keys.Length - 1]);
+            return null;
         }
 
-        private ConfigItem Find(string key) => Items.Find(p => p.HasKey(key));
+        public ConfigSection Section(int index)
+        {
+            if (this[index] is ConfigSection section)
+                return section;
+
+            return null;
+        }
+
+        private static string GetAbsoluteName(string currentSectionUniqueName, string key) =>
+            (currentSectionUniqueName + DELIMITER + key).TrimStart(DELIMITER);
 
         private ConfigItem AddOrUpdate(string key, object value)
         {
@@ -83,13 +159,15 @@ namespace Autossential.Configuration.Core
             return item;
         }
 
+        private ConfigItem Find(string key) => Items.Find(p => p.HasKey(key));
+
         private ConfigItem SetItem(string keyPath, object value)
         {
             if (keyPath.IndexOf(DELIMITER) == -1)
             {
                 if (value is ConfigSection config)
                 {
-                    config.UniqueName = CreateUniqueName(UniqueName, keyPath);
+                    config.AbsoluteName = GetAbsoluteName(AbsoluteName, keyPath);
                     config._parent = this;
                 }
 
@@ -102,7 +180,7 @@ namespace Autossential.Configuration.Core
             for (int i = 0; i < keys.Length - 1; i++)
             {
                 var key = keys[i];
-                if (section.GetItem(key)?.Value is ConfigSection config)
+                if (section.AsConfigItem(key)?.Value is ConfigSection config)
                 {
                     section = config;
                     continue;
@@ -116,84 +194,33 @@ namespace Autossential.Configuration.Core
             return section.SetItem(keys[keys.Length - 1], value);
         }
 
-        public object this[string keyPath]
+        public IEnumerable<ConfigItem> Traverse()
         {
-            get
+            foreach (var item in Items)
             {
-                if (_cache.ContainsKey(keyPath))
-                    return _cache[keyPath].Value;
-
-                return GetItem(keyPath)?.Value;
-            }
-            set
-            {
-                var item = SetItem(keyPath, value);
-                if (item == null)
-                    _cache.Remove(keyPath);
-                else
-                    _cache[keyPath] = item;
-            }
-        }
-
-        internal const char DELIMITER = '/';
-
-        public object this[int index]
-        {
-            get
-            {
-                if (index < Items.Count)
-                    return Items[index].Value;
-
-                return null;
-            }
-        }
-
-        public bool HasKey(string keyPath) => this[keyPath] != null;
-
-        public ConfigSection()
-        {
-        }
-
-        public ConfigSection(ISectionResolver resolver)
-        {
-            resolver.Resolve(this);
-        }
-
-        public ConfigSection Section(string keyPath)
-        {
-            if (this[keyPath] is ConfigSection section)
-                return section;
-
-            return null;
-        }
-
-        public ConfigSection Section(int index)
-        {
-            if (this[index] is ConfigSection section)
-                return section;
-
-            return null;
-        }
-
-        public bool HasSection(string keyPath) => Section(keyPath) != null;
-
-        public void Merge(ConfigSection other, bool @override)
-        {
-            foreach (var item in other.Items)
-            {
-                if (item.Value is ConfigSection otherSection && HasSection(item.Key))
+                yield return item;
+                if (item.Value is ConfigSection config)
                 {
-                    Section(item.Key).Merge(otherSection, @override);
-                    continue;
+                    foreach (var subItem in config.Traverse())
+                        yield return subItem;
                 }
-
-                if (@override || !HasKey(item.Key))
-                    this[item.Key] = item.Value;
             }
         }
 
-        public IEnumerator<ConfigItem> GetEnumerator() => Items.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        public IEnumerable<KeyValuePair<string, object>> Inspect()
+        {
+            foreach (var item in Items)
+            {
+                if (item.Value is ConfigSection config)
+                {
+                    foreach (var subItem in config.Inspect())
+                        yield return subItem;
+                }
+                else
+                {
+                    yield return new KeyValuePair<string, object>((AbsoluteName + DELIMITER + item.Key).TrimStart(DELIMITER), item.Value);
+                }
+            }
+        }
     }
 }

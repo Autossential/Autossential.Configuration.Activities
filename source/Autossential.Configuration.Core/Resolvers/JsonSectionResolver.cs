@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Diagnostics;
+using System.Xml.Schema;
 
 namespace Autossential.Configuration.Core.Resolvers
 {
@@ -34,6 +34,7 @@ namespace Autossential.Configuration.Core.Resolvers
             {
                 return typeToConvert == typeof(Dictionary<string, object>);
             }
+
             public override Dictionary<string, object> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             {
                 if (reader.TokenType != JsonTokenType.StartObject)
@@ -49,7 +50,7 @@ namespace Autossential.Configuration.Core.Resolvers
                         throw new JsonException("JsonTokenType is not PropertyName.");
 
                     var name = reader.GetString();
-                    if (string.IsNullOrWhiteSpace(name)) // just ignores
+                    if (string.IsNullOrWhiteSpace(name)) // ignore whitespace names
                         continue;
 
                     reader.Read();
@@ -76,17 +77,33 @@ namespace Autossential.Configuration.Core.Resolvers
                             dic.Add(name, GetValue(ref reader, options));
                         }
                         return dic;
+
                     case JsonTokenType.StartArray:
                         var list = new List<object>();
                         while (reader.Read() && reader.TokenType != JsonTokenType.EndArray)
                             list.Add(GetValue(ref reader, options));
                         return list;
+
                     case JsonTokenType.String:
                         if (reader.TryGetDateTime(out var date))
                             return date;
                         return reader.GetString();
+
                     case JsonTokenType.Number:
-                        return reader.TryGetInt64(out var result) ? result : reader.GetDecimal();
+                        if (reader.TryGetInt32(out var result32))
+                            return result32;
+
+                        if (reader.TryGetInt64(out var result64))
+                            return result64;
+
+                        if (reader.TryGetDouble(out var resultDouble))
+                            return resultDouble;
+
+                        if (reader.TryGetDecimal(out var resultDecimal))
+                            return resultDecimal;
+
+                        return reader.GetDouble();
+
                     case JsonTokenType.True: return true;
                     case JsonTokenType.False: return false;
                     case JsonTokenType.Null: return null;

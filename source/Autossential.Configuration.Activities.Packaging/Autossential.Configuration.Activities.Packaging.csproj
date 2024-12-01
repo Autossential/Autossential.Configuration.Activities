@@ -1,0 +1,81 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net461;net6.0-windows</TargetFrameworks>
+		<UseWindowsForms>true</UseWindowsForms>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<VersionBuild>$([System.DateTime]::UtcNow.DayOfYear.ToString("F0"))</VersionBuild>
+		<VersionRevision>$([System.DateTime]::UtcNow.TimeOfDay.TotalMinutes.ToString("F0"))</VersionRevision>
+		<Version>1.2.0</Version>
+		<PackageId>Autossential.Configuration.Activities</PackageId>
+		<Authors>Alexandre Toledo Perez</Authors>
+		<PackageTags>UiPath;Autossential;Configuration;Activities;Json;Yaml;Yml</PackageTags>
+		<Product>Autossential.Configuration.Activities.Packaging</Product>
+		<PackageOutputPath>..\..\..\Output\</PackageOutputPath>
+		<TargetsForTfmSpecificBuildOutput>AddDlls</TargetsForTfmSpecificBuildOutput>
+		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+		<PackageIcon>packageIcon.png</PackageIcon>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug' AND '$(DesignTimeBuild)' != 'true'">
+		<PackageVersion>$(Version)-dev.$(VersionBuild)$(VersionRevision)</PackageVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="packageIcon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="packageIcon.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="YamlDotNet" />
+		<PackageReference Include="System.Text.Json" />
+	</ItemGroup>
+
+	<Target Name="AddDlls">
+		<!-- PDBs for debug-->
+		<ItemGroup Condition="'$(Configuration)' == 'Debug'">
+			<BuildOutputInPackage Include="$(OutputPath)Autossential.Configuration.Core.pdb" />
+			<BuildOutputInPackage Include="$(OutputPath)Autossential.Configuration.Activities.pdb" />
+			<BuildOutputInPackage Include="$(OutputPath)Autossential.Configuration.Activities.Design.pdb" />
+		</ItemGroup>
+		<ItemGroup>
+			<BuildOutputInPackage Include="$(OutputPath)Autossential.Configuration.Core.dll" />
+			<BuildOutputInPackage Include="$(OutputPath)Autossential.Configuration.Activities.dll" />
+			<BuildOutputInPackage Include="$(OutputPath)Autossential.Configuration.Activities.Design.dll" />
+		</ItemGroup>
+	</Target>
+
+	<Target Name="RemoveMetaDll" AfterTargets="BuiltProjectOutputGroup">
+		<ItemGroup>
+			<BuiltProjectOutputGroupOutput Remove="@(BuiltProjectOutputGroupOutput)" />
+		</ItemGroup>
+	</Target>
+
+	<Target Name="CleanPackageFiles" BeforeTargets="Build">
+		<Message Text="Deleting packages ..." />
+		<ItemGroup>
+			<PackageFilesToDelete Include="$(PackageOutputPath)\$(PackageId)*.nupkg" />
+		</ItemGroup>
+		<Delete Files="@(PackageFilesToDelete)" ContinueOnError="WarnAndContinue" />
+	</Target>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Autossential.Configuration.Activities.Design\Autossential.Configuration.Activities.Design.csproj">
+	    <PrivateAssets>All</PrivateAssets>
+	  </ProjectReference>
+	  <ProjectReference Include="..\Autossential.Configuration.Activities\Autossential.Configuration.Activities.csproj">
+	    <PrivateAssets>All</PrivateAssets>
+	  </ProjectReference>
+	</ItemGroup>
+
+</Project>

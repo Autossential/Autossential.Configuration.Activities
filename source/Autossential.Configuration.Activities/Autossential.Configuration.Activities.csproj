@@ -22,10 +22,6 @@
 		<PackageReference Include="UiPath.Workflow" />
 		<PackageReference Include="System.Activities.Core.Presentation" />
 	</ItemGroup>
-	
-	<ItemGroup>
-		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<None Update="Properties\ResourcesGen.tt">
@@ -44,6 +40,10 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>ResourcesGen.tt</DependentUpon>
 	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
 	</ItemGroup>
 
 </Project>

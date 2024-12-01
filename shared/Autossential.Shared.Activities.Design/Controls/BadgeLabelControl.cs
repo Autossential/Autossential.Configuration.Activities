@@ -20,7 +20,6 @@ namespace Autossential.Shared.Activities.Design.Controls
         public static readonly DependencyProperty BadgeProperty =
             DependencyProperty.Register("Badge", typeof(string), typeof(BadgeLabelControl), new PropertyMetadata(null));
 
-
         public string Label
         {
             get { return (string)GetValue(LabelProperty); }

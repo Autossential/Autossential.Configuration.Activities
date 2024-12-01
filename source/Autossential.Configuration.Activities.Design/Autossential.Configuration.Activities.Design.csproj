@@ -3,35 +3,8 @@
 		<TargetFrameworks>net461;net6.0-windows</TargetFrameworks>
 		<UseWPF>true</UseWPF>
 		<UseWindowsForms>true</UseWindowsForms>
-		<Version>1.1.0</Version>
-	</PropertyGroup>
-	<PropertyGroup>
-		<GeneratedMSBuildEditorConfigFile>$(IntermediateOutputPath)\$(MSBuildProjectName).GeneratedMSBuildEditorConfig.editorconfig</GeneratedMSBuildEditorConfigFile>
-	</PropertyGroup>
-	<PropertyGroup>
-		<Description>Provides activities to create a rich configuration object based on text files formatted as YAML or JSON standards or from objects like DataTable and Dictionary.</Description>
-		<Authors>Alexandre Toledo Perez</Authors>
-		<Copyright>© 2021 Alexandre Toledo Perez</Copyright>
-		<PackageProjectUrl>https://alexandretperez.github.io/Autossential/</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/alexandretperez/Autossential</RepositoryUrl>
-		<RepositoryType>GIT</RepositoryType>
-		<PackageTags>Custom Activity Windows Workflow Foundation UiPath</PackageTags>
-		<PackageId>$(MSBuildProjectName.Replace(".Design", ""))</PackageId>
-		<TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageIcon>packageIcon.png</PackageIcon>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)' == 'Debug' AND '$(DesignTimeBuild)' != 'true'">
-		<PackageVersion>$(Version)-preview-$([System.DateTime]::UtcNow.ToString(MMddHHmmss))</PackageVersion>
-	</PropertyGroup>
-
-	<Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
-		<ItemGroup>
-			<BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadatavalue('ReferenceSourceTarget', 'ProjectReference'))" />
-		</ItemGroup>
-	</Target>
-	
 	<ItemGroup Condition="'$(TargetFramework)' == 'net461' ">
 		<Reference Include="Microsoft.CSharp" />
 		<Reference Include="PresentationCore" />
@@ -45,26 +18,16 @@
 
 	<ItemGroup Condition="$(TargetFramework.StartsWith('net6'))">
 		<PackageReference Include="UiPath.Workflow" />
-		<PackageReference Include="UiPath.Workflow.Runtime" />
 		<PackageReference Include="System.Activities.Core.Presentation" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<PackageReference Include="YamlDotNet" />
 		<PackageReference Include="System.Text.Json" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="packageIcon.png">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\Autossential.Configuration.Activities\Autossential.Configuration.Activities.csproj">
-	    <PrivateAssets>All</PrivateAssets>
-	  </ProjectReference>
+		<ProjectReference Include="..\Autossential.Configuration.Activities\Autossential.Configuration.Activities.csproj"/>
 	</ItemGroup>
 
 	<Import Project="..\..\shared\Autossential.Shared.Activities.Design\Autossential.Shared.Activities.Design.projitems" Label="Shared" />

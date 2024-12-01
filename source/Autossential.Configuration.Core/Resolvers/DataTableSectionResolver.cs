@@ -1,5 +1,4 @@
-﻿using Autossential.Configuration.Core;
-using System.Data;
+﻿using System.Data;
 
 namespace Autossential.Configuration.Core.Resolvers
 {
@@ -15,6 +14,7 @@ namespace Autossential.Configuration.Core.Resolvers
             _keyColumn = keyColumn;
             _valueColumn = valueColumn;
         }
+
         public void Resolve(ConfigSection config)
         {
             foreach (DataRow row in _dataTable.Rows)

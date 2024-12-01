@@ -1,6 +1,4 @@
-﻿using Autossential.Configuration.Core;
-
-namespace Autossential.Configuration.Core.Resolvers
+﻿namespace Autossential.Configuration.Core.Resolvers
 {
     public interface ISectionResolver
     {

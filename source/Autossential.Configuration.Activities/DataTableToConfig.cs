@@ -1,6 +1,7 @@
 ﻿using Autossential.Configuration.Activities.Properties;
 using Autossential.Configuration.Core;
 using Autossential.Configuration.Core.Resolvers;
+using System;
 using System.Activities;
 using System.Data;
 
@@ -24,9 +25,15 @@ namespace Autossential.Configuration.Activities
 
         protected override ConfigSection Execute(CodeActivityContext context)
         {
-            var table = DataTable.Get(context);
-            var key = KeyColumnName.Get(context);
-            var value = ValueColumnName.Get(context);
+            var table = DataTable.Get(context) ?? throw new ArgumentNullException(nameof(DataTable));
+            var key = KeyColumnName.Get(context) ?? throw new ArgumentNullException(nameof(KeyColumnName));
+            var value = ValueColumnName.Get(context) ?? throw new ArgumentNullException(nameof(ValueColumnName));
+
+            if (key == string.Empty)
+                throw new ArgumentException(Resources.Validation_EmptyStringErrorFormat(nameof(KeyColumnName)));
+
+            if (value == string.Empty)
+                throw new ArgumentException(Resources.Validation_EmptyStringErrorFormat(nameof(ValueColumnName)));
 
             return new ConfigSection(new DataTableSectionResolver(table, key, value));
         }

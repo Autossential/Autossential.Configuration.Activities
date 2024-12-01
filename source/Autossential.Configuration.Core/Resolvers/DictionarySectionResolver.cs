@@ -1,5 +1,4 @@
-﻿using Autossential.Configuration.Core;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 
 namespace Autossential.Configuration.Core.Resolvers
@@ -8,7 +7,8 @@ namespace Autossential.Configuration.Core.Resolvers
     {
         private readonly Dictionary<string, object> _settings;
 
-        protected DictionarySectionResolver() { }
+        protected DictionarySectionResolver()
+        { }
 
         public DictionarySectionResolver(Dictionary<string, object> settings)
         {

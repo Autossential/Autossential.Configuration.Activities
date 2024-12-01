@@ -313,4 +313,7 @@
     <value>Please provide a value for {0}.</value>
     <comment>validation</comment>
   </data>
+  <data name="Validation_EmptyStringError" xml:space="preserve">
+    <value>The value of {0} cannot be empty.</value>
+  </data>
 </root>
