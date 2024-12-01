@@ -14,19 +14,13 @@
 		<Authors>Alexandre Toledo Perez</Authors>
 		<PackageTags>UiPath;Autossential;Configuration;Activities;Json;Yaml;Yml</PackageTags>
 		<Product>Autossential.Configuration.Activities.Packaging</Product>
+		<PackageOutputPath>..\..\..\Output\</PackageOutputPath>
 		<TargetsForTfmSpecificBuildOutput>AddDlls</TargetsForTfmSpecificBuildOutput>
 		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
 		<PackageIcon>packageIcon.png</PackageIcon>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-		<PackageOutputPath>..\..\..\Output\</PackageOutputPath>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
-		<PackageOutputPath>Package</PackageOutputPath>
-	</PropertyGroup>
-	
 	<PropertyGroup Condition="'$(Configuration)' == 'Debug' AND '$(DesignTimeBuild)' != 'true'">
 		<PackageVersion>$(Version)-dev.$(VersionBuild)$(VersionRevision)</PackageVersion>
 	</PropertyGroup>
