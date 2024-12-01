@@ -6,6 +6,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
+		<Description>Provides activities to create a rich configuration from text files formatted on YAML/JSON standards or from objects like DataTable and Dictionary.</Description>
 		<VersionBuild>$([System.DateTime]::UtcNow.DayOfYear.ToString("F0"))</VersionBuild>
 		<VersionRevision>$([System.DateTime]::UtcNow.TimeOfDay.TotalMinutes.ToString("F0"))</VersionRevision>
 		<Version>1.2.1</Version>
