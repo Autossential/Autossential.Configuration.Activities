@@ -61,7 +61,7 @@ namespace Autossential.Configuration.Core
         public ConfigItem AsConfigItem(string keyPath)
         {
             if (keyPath.IndexOf(DELIMITER) == -1)
-                return Find(keyPath);
+                return Find(keyPath) ?? new ConfigItem(keyPath, null);
 
             var section = this;
             var keys = keyPath.Split(DELIMITER);
