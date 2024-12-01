@@ -6,9 +6,10 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
+		<Description>Provides activities to create a rich configuration from text files formatted on YAML/JSON standards or from objects like DataTable and Dictionary.</Description>
 		<VersionBuild>$([System.DateTime]::UtcNow.DayOfYear.ToString("F0"))</VersionBuild>
 		<VersionRevision>$([System.DateTime]::UtcNow.TimeOfDay.TotalMinutes.ToString("F0"))</VersionRevision>
-		<Version>1.2.0</Version>
+		<Version>1.2.1</Version>
 		<PackageId>Autossential.Configuration.Activities</PackageId>
 		<Authors>Alexandre Toledo Perez</Authors>
 		<PackageTags>UiPath;Autossential;Configuration;Activities;Json;Yaml;Yml</PackageTags>
