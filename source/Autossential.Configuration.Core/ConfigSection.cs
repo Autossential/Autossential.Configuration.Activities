@@ -14,8 +14,6 @@ namespace Autossential.Configuration.Core
 
         private ConfigSection _parent;
 
-        public bool KeepCache { get; set; }
-
         public ConfigSection()
         {
         }
@@ -84,6 +82,7 @@ namespace Autossential.Configuration.Core
         public IEnumerator<ConfigItem> GetEnumerator() => Items.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
         public bool HasKey(string keyPath) => this[keyPath] != null;
 
         public bool HasSection(string keyPath) => Section(keyPath) != null;
